@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    working_dir: /app-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - APP_PORT=3001
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

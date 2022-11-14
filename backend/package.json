@@ -2,8 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/server",
   "scripts": {
+    "start": "npm run dev",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src --ext .ts"
