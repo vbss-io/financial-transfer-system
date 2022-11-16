@@ -13,14 +13,16 @@ const errorHandler: ErrorRequestHandler = (
   }
 
   const messageAsErrorType = err.message as keyof typeof ErrorTypes;
+  const nameAsErrorType = err.name as keyof typeof ErrorTypes;
 
-  const mappedError = errorCatalog[messageAsErrorType];
+  const mappedError = errorCatalog[messageAsErrorType] || errorCatalog[nameAsErrorType];
 
   if (mappedError) {
     const { message, httpStatus } = mappedError;
     return res.status(httpStatus).json({ error: message });
   }
 
+  console.log(err.name);
   return res.status(500).json({ message: 'Internal Error' });
 }
 

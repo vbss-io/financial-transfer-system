@@ -1,7 +1,20 @@
 import { Request, Response } from 'express';
 import UserService from '../services/user.service';
+import Bcrypt from '../middlewares/bcrypt.middleware';
 
 export default class UserController {
+  static async create(
+    req: Request,
+    res: Response,
+  ) {
+    const { username, password } = req.body;
+
+    const hashedPassword = Bcrypt.hash(password);
+
+    const user = await UserService.create({ username, password: hashedPassword });
+    return res.status(201).json(user);
+  }
+
   static async findOne(
     req: Request,
     res: Response,

@@ -17,7 +17,7 @@ export default class UserService {
     const user = await UserModel.findOne(_id);
 
     if (!user) {
-      throw new Error(ErrorTypes.userNotFound);
+      throw new Error(ErrorTypes.UserNotFound);
     }
 
     return user;

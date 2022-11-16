@@ -20,10 +20,12 @@ Accounts.init({
   balance: {
     type: DECIMAL,
     allowNull: false,
+    defaultValue: 100.00,
   },
 }, {
   sequelize: db,
   tableName: 'accounts',
+  timestamps: false,
 });
 
 export default Accounts;

@@ -5,12 +5,12 @@ module.exports = {
       [
         {
           username: 'ng.vitor',
-          password: 'ng.vitor',
+          password: '$2a$10$PRohJmrqPnfEVpg.ioFBkO3mYvmODLpeIQJFTnTsxsWrlAR41LF2G', // ng.vitor
           accountId: 1,
         },
         {
           username: 'ng.gabriela',
-          password: 'ng.gabriela',
+          password: '$2a$10$mXdmY4Y49gsGEem0xV9TVu8mZKW91XsdI1xPKAq503Frhi.k0Hk2G', // ng.gabriela
           accountId: 2,
         },
       ],
