@@ -11,7 +11,12 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - APP_PORT=3001
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ngcash
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      APP_PORT: 3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
