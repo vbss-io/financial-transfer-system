@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 // eslint-disable-next-line no-shadow
 export enum ErrorTypes {
-  UserNotFound = 'UserNotFound',
+  TokenNotFound = 'TokenNotFound',
+  InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
 }
 
@@ -15,12 +16,16 @@ export type ErrorCatalog = {
 }
 
 export const errorCatalog: ErrorCatalog = {
-  UserNotFound: {
-    message: 'User not found',
-    httpStatus: 404,
-  },
   SequelizeUniqueConstraintError: {
     message: 'Username already in use',
     httpStatus: 409,
+  },
+  TokenNotFound: {
+    message: 'Token not found',
+    httpStatus: 401,
+  },
+  InvalidCredentials: {
+    message: 'Invalid credentials',
+    httpStatus: 401,
   },
 };

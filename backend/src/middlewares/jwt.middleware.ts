@@ -2,7 +2,8 @@ import * as jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
 import IRequestUser from '../interfaces/requestUser.interface';
 import IDecoded from '../interfaces/decoded.interface';
-import { IUser } from '../interfaces/user.interface'; 
+import { IUser } from '../interfaces/user.interface';
+import { ErrorTypes } from '../errors/catalog';
 import 'dotenv/config';
 
 const secret: string = process.env.JWT_SECRET || 'secret';
@@ -26,7 +27,7 @@ export default class jsonwebtoken {
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(401).json({ message: 'Token not found' });
+      throw new Error(ErrorTypes.TokenNotFound);
     }
 
     const decoded = jwt.verify(token, secret) as IDecoded;

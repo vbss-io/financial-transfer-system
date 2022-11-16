@@ -1,25 +1,31 @@
 import { Request, Response } from 'express';
+import IRequestUser from '../interfaces/requestUser.interface';
 import UserService from '../services/user.service';
+import jsonwebtoken from '../middlewares/jwt.middleware';
+import { IUser } from '../interfaces/user.interface';
 
 export default class UserController {
-  static async create(
+  static async createUser(
     req: Request,
     res: Response,
   ) {
     const { username, password } = req.body;
 
-    const user = await UserService.create({ username, password });
-    return res.status(201).json(user);
+    const user = await UserService.createUser({ username, password });
+
+    const token: string = await jsonwebtoken.generateToken(user);
+
+    return res.status(201).json({ username: user.username, token });
   }
 
-  static async findOne(
-    req: Request,
+  static async loginUser(
+    req: IRequestUser,
     res: Response,
   ) {
-    const { id } = req.params;
+    const { user } = req;
 
-    const user = await UserService.findOne(id);
+    const token: string = await jsonwebtoken.generateToken(user as IUser);
 
-    return res.status(200).json(user);
+    return res.status(201).json({ username: user?.username, token });
   }
 }
