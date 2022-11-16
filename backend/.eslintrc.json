@@ -102,6 +102,9 @@
         ],
         "import/extensions": [
             "off"
+        ],
+        "semi": [
+            "off"
         ]
     }
 }

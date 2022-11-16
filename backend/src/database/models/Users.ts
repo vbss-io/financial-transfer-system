@@ -39,6 +39,7 @@ Users.init({
 }, {
   sequelize: db,
   tableName: 'users',
+  timestamps: false,
 });
 
 Users.belongsTo(Accounts, { foreignKey: 'accountId' });
