@@ -3,6 +3,8 @@
 
 import { z } from 'zod';
 
+const regexPassword = /^(?=.*[A-Z])(?=.*\d).*$/;
+
 export const userZodSchema = z.object({
   id: z.number().optional(),
   username: z.string({
@@ -14,8 +16,10 @@ export const userZodSchema = z.object({
   password: z.string({
     required_error: 'Password is required',
     invalid_type_error: 'Password must be a string',
-  }).min(6, {
-    message: 'Password must be at least 6 characters',
+  }).min(8, {
+    message: 'Password must be at least 8 characters',
+  }).regex((regexPassword), {
+    message: 'Password must contain at least one uppercase letter and one number',
   }),
   accountId: z.number().optional(),
 });

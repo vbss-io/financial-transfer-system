@@ -1,4 +1,5 @@
 import UserModel from '../models/user.model';
+import Bcrypt from '../middlewares/bcrypt.middleware';
 import { IUser, userZodSchema } from '../interfaces/user.interface';
 import { ErrorTypes } from '../errors/catalog';
 
@@ -10,7 +11,12 @@ export default class UserService {
       throw parsed.error;
     }
 
-    return UserModel.create(parsed.data);
+    const newUser = {
+      username: parsed.data.username,
+      password: Bcrypt.hash(parsed.data.password),
+    };
+
+    return UserModel.create(newUser);
   }
 
   static async findOne(_id: string): Promise<IUser | null> {
