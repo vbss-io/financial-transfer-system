@@ -16,9 +16,7 @@ export default class UserController {
     req: Request,
     res: Response,
   ) {
-    console.log('entrou no findOne controller');
     const { id } = req.params;
-    console.log('id: ', id);
 
     const user = await UserService.findOne(id);
 
