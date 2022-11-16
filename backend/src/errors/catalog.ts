@@ -5,6 +5,8 @@ export enum ErrorTypes {
   AccountNotFound = 'AccountNotFound',
   InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
+  InvalidUsername = 'InvalidUsername',
+  NoBalance = 'NoBalance',
 }
 
 type ErrorResponseObject = {
@@ -32,5 +34,13 @@ export const errorCatalog: ErrorCatalog = {
   AccountNotFound: {
     message: 'Account not found',
     httpStatus: 404,
+  },
+  InvalidUsername: {
+    message: 'Credited username cannot be the same as the debited username',
+    httpStatus: 400,
+  },
+  NoBalance: {
+    message: 'Insufficient balance',
+    httpStatus: 400,
   },
 };

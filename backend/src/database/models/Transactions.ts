@@ -55,6 +55,7 @@ Transactions.init({
 }, {
   sequelize: db,
   tableName: 'transactions',
+  timestamps: false,
 });
 
 Transactions.belongsTo(Accounts, { foreignKey: 'debitedAccountId' });

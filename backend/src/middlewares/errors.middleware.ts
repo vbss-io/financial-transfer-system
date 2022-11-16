@@ -22,7 +22,7 @@ const errorHandler: ErrorRequestHandler = (
     return res.status(httpStatus).json({ error: message });
   }
 
-  console.log(err.name);
+  console.log(err);
   return res.status(500).json({ message: 'Internal Error' });
 }
 

@@ -26,6 +26,7 @@ export default class App {
   this.app.use(accessControl);
   this.app.use('/users', routes.userRouter);
   this.app.use('/accounts', routes.accountRouter);
+  this.app.use('/transactions', routes.transactionRouter);
 
   this.app.use(errorHandler);
   }
