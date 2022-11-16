@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-shadow
 export enum ErrorTypes {
   TokenNotFound = 'TokenNotFound',
+  AccountNotFound = 'AccountNotFound',
   InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
 }
@@ -27,5 +28,9 @@ export const errorCatalog: ErrorCatalog = {
   InvalidCredentials: {
     message: 'Invalid credentials',
     httpStatus: 401,
+  },
+  AccountNotFound: {
+    message: 'Account not found',
+    httpStatus: 404,
   },
 };

@@ -25,6 +25,7 @@ export default class App {
   this.app.use(express.json());
   this.app.use(accessControl);
   this.app.use('/users', routes.userRouter);
+  this.app.use('/accounts', routes.accountRouter);
 
   this.app.use(errorHandler);
   }

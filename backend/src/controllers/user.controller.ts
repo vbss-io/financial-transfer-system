@@ -15,7 +15,7 @@ export default class UserController {
 
     const token: string = await jsonwebtoken.generateToken(user);
 
-    return res.status(201).json({ username: user.username, token });
+    return res.status(201).json({ username: user.username, accountId: user.accountId, token });
   }
 
   static async loginUser(
@@ -26,6 +26,6 @@ export default class UserController {
 
     const token: string = await jsonwebtoken.generateToken(user as IUser);
 
-    return res.status(201).json({ username: user?.username, token });
+    return res.status(201).json({ username: user?.username, accountId: user?.accountId, token });
   }
 }
