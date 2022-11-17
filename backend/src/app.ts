@@ -29,6 +29,7 @@ export default class App {
   this.app.use('/users', routes.userRouter);
   this.app.use('/accounts', routes.accountRouter);
   this.app.use('/transactions', routes.transactionRouter);
+  this.app.use((_req, res) => res.status(404).json({ message: 'Not Found' }));
 
   this.app.use(errorHandler);
   }
