@@ -37,7 +37,7 @@ export const errorCatalog: ErrorCatalog = {
     httpStatus: 404,
   },
   InvalidUsername: {
-    message: 'Credited username cannot be the same as the debited username',
+    message: 'Invalid username',
     httpStatus: 400,
   },
   NoBalance: {
