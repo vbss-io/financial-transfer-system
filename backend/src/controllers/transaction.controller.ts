@@ -10,7 +10,8 @@ export default class TransactionController {
     req: IRequestUser,
     res: Response,
   ) {
-    const { value, creditedAccountId, debitedAccountId } = req.body;
+    const { value, creditedAccountId } = req.body;
+    const { id: debitedAccountId } = req.user as IUser;
 
     const transaction = await TransactionService.createTransaction({
       debitedAccountId, creditedAccountId, value,

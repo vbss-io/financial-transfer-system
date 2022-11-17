@@ -6,10 +6,7 @@ import { z } from 'zod';
 export const transactionZodSchema = z.object({
   id: z.number().optional(),
   debitedAccountId: z.number().optional(),
-  debitedUsername: z.string({
-    required_error: 'debitedUsername is required',
-    invalid_type_error: 'debitedUsername must be a string',
-  }),
+  debitedUsername: z.string().optional(),
   debitedAccount: z.object(
     {
       id: z.number(),
