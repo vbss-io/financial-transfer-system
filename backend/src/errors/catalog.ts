@@ -2,6 +2,7 @@
 // eslint-disable-next-line no-shadow
 export enum ErrorTypes {
   TokenNotFound = 'TokenNotFound',
+  JsonWebTokenError = 'JsonWebTokenError',
   AccountNotFound = 'AccountNotFound',
   InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
@@ -42,5 +43,9 @@ export const errorCatalog: ErrorCatalog = {
   NoBalance: {
     message: 'Insufficient balance',
     httpStatus: 400,
+  },
+  JsonWebTokenError: {
+    message: 'Invalid token',
+    httpStatus: 401,
   },
 };
