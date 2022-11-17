@@ -5,7 +5,7 @@
 
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
-import Accounts from './Accounts';
+// import Accounts from './Accounts';
 
 class Users extends Model {
   public id!: number;
@@ -42,6 +42,6 @@ Users.init({
   timestamps: false,
 });
 
-Users.belongsTo(Accounts, { foreignKey: 'accountId' });
+// Users.belongsTo(Accounts, { foreignKey: 'accountId' });
 
 export default Users;

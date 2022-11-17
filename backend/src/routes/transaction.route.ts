@@ -15,4 +15,10 @@ transactionRouter.post(
   TransactionController.createTransaction,
 );
 
+transactionRouter.get(
+  '/list',
+  jsonwebtoken.verifyToken,
+  TransactionController.findAllTransactions,
+);
+
 export default transactionRouter;

@@ -2,6 +2,7 @@
 // - balance
 
 import { Model, INTEGER, DECIMAL } from 'sequelize';
+import Users from './Users';
 import db from '.';
 
 class Accounts extends Model {
@@ -27,5 +28,7 @@ Accounts.init({
   tableName: 'accounts',
   timestamps: false,
 });
+
+Accounts.hasOne(Users, { foreignKey: 'accountId' });
 
 export default Accounts;

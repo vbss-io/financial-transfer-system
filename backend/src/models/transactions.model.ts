@@ -1,6 +1,7 @@
 import * as Sequelize from 'sequelize';
 import Transactions from '../database/models/Transactions';
 import Accounts from '../database/models/Accounts';
+import Users from '../database/models/Users';
 import * as database from '../database/config/database';
 import { ITransaction } from '../interfaces/transaction.interface';
 
@@ -30,5 +31,45 @@ export default class TransactionModel {
     });
 
     return result.dataValues;    
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  static async findAll(_id: number): Promise<ITransaction[]> {
+    const { Op } = Sequelize;
+    return Transactions.findAll({
+      where: {
+        [Op.or]: [
+          { debitedAccountId: _id },
+          { creditedAccountId: _id },
+        ],
+      },
+      include: [
+        {
+          model: Accounts,
+          as: 'debitedAccount',
+          attributes: ['id'],
+          include: [
+            {
+              model: Users,
+              attributes: ['username'],
+            },
+          ],
+        },
+        {
+          model: Accounts,
+          as: 'creditedAccount',
+          attributes: ['id'],
+          include: [
+            {
+              model: Users,
+              attributes: ['username'],
+            },
+          ],
+        },
+      ],
+      attributes: {
+        exclude: ['debitedAccountId', 'creditedAccountId'],
+      },
+    }) as unknown as ITransaction[];
   }
 }

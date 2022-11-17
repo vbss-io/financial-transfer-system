@@ -10,11 +10,27 @@ export const transactionZodSchema = z.object({
     required_error: 'debitedUsername is required',
     invalid_type_error: 'debitedUsername must be a string',
   }),
+  debitedAccount: z.object(
+    {
+      id: z.number(),
+      User: z.object({
+        username: z.string(),
+      }),
+    },
+  ).optional(),
   creditedAccountId: z.number().optional(),
   creditedUsername: z.string({
     required_error: 'creditedUsername is required',
     invalid_type_error: 'creditedUsername must be a string',
   }),
+  creditedAccount: z.object(
+    {
+      id: z.number(),
+      User: z.object({
+        username: z.string(),
+      }),
+    },
+  ).optional(),
   value: z.number({
     required_error: 'Value is required',
     invalid_type_error: 'Value must be a number',

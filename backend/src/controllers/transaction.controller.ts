@@ -17,4 +17,15 @@ export default class TransactionController {
 
     return res.status(200).json(transaction);
   }
+
+  static async findAllTransactions(
+    req: IRequestUser,
+    res: Response,
+  ) {
+    const { user } = req;
+
+    const transactions = await TransactionService.findAllTransactions(Number(user?.id));
+
+    return res.status(200).json(transactions);
+  }
 }
