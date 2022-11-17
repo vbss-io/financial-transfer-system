@@ -10,15 +10,15 @@ export default class TransactionService {
 
   static formatTransactions(transactions: ITransaction[]): ITransaction[] {
     const format = transactions.map((transaction) => {
-      const { debitedAccount, creditedAccount } = transaction;
+      const { id, value, createdAt, debitedAccount, creditedAccount } = transaction;
         return {
-          id: transaction.id,
-          value: transaction.value,
-          createdAt: transaction.createdAt,
+          id,
+          value,
+          createdAt: createdAt && new Date(createdAt).toLocaleString(),
           debitedAccount: debitedAccount?.User.username,
           creditedAccount: creditedAccount?.User.username,
         }
-    }) as ITransaction[];
+    }) as unknown as ITransaction[];
 
     return format;
   }
