@@ -8,12 +8,13 @@ export default class TransactionService {
     return result;
   }
 
-  static formatTransactions(transactions: ITransaction[]): ITransaction[] {
+  static formatTransactions(username: string, transactions: ITransaction[]): ITransaction[] {
     const format = transactions.map((transaction) => {
       const { id, value, createdAt, debitedAccount, creditedAccount } = transaction;
         return {
           id,
           value,
+          operation: debitedAccount?.User.username === username ? 'cash-out' : 'cash-in',
           createdAt: createdAt && new Date(createdAt).toLocaleString(),
           debitedAccount: debitedAccount?.User.username,
           creditedAccount: creditedAccount?.User.username,
@@ -23,8 +24,8 @@ export default class TransactionService {
     return format;
   }
 
-  static async findAllTransactions(_id: number): Promise<ITransaction[]> {
+  static async findAllTransactions(username: string, _id: number): Promise<ITransaction[]> {
     const transactions = await TransactionModel.findAll(_id);
-    return this.formatTransactions(transactions);
+    return this.formatTransactions(username, transactions);
   }
 }

@@ -38,6 +38,7 @@ export const transactionZodSchema = z.object({
     message: 'Value must be at least 0.01',
   }),
   createdAt: z.string().optional(),
+  operation: z.string().optional(),
 });
 
 export type ITransaction = z.infer<typeof transactionZodSchema>;

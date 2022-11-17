@@ -16,6 +16,12 @@ transactionRouter.post(
 );
 
 transactionRouter.get(
+  '/list/search',
+  jsonwebtoken.verifyToken,
+  TransactionController.filterTransactions,
+);
+
+transactionRouter.get(
   '/list',
   jsonwebtoken.verifyToken,
   TransactionController.findAllTransactions,
