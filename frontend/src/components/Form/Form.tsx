@@ -19,11 +19,11 @@ export default function Form({ handleSuccess, handleChangeForm, errorStatus, err
       className="mt-8 flex flex-col gap-4">
     <div className="flex flex-col gap-2">
         <label htmlFor="username">Usuário:</label>
-        <Input id="username" name="username" placeholder="Usuário"/>
+        <Input required id="username" name="username" placeholder="Usuário"/>
     </div>
     <div className="flex flex-col gap-2">
         <label htmlFor="password">Senha:</label>
-        <Input type="password" id="password" name="password" placeholder="Senha"/>
+        <Input required type="password" id="password" name="password" placeholder="Senha"/>
     </div>
     <footer className="mt-4 flex flex-col justify-center gap-4">
       <Button
