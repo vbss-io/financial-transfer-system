@@ -42,11 +42,11 @@ export default function TransactionForm() {
           <form onSubmit={onSubmit} className="flex flex-col gap-4 mt-8">
             <div className="flex flex-col gap-2">
               <label htmlFor="creditedUsername">Usuário:</label>
-              <Input id="creditedUsername" name="creditedUsername" placeholder="Usuário a receber?"/>
+              <Input required id="creditedUsername" name="creditedUsername" placeholder="Usuário a receber?"/>
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="value">Valor:</label>
-              <Input type="number" step="0.01" id="value" name="value" placeholder="Qual o valor?"/>
+              <Input required type="number" step="0.01" id="value" name="value" placeholder="Qual o valor?"/>
             </div>
             <span className={`${!errorStatus && 'hidden'} text-center text-red-500`}>
               {error}
