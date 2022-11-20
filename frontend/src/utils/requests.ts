@@ -32,3 +32,13 @@ export const newTransaction = async (body: any) => {
   const { data } = await connectApi.post(`transactions/cash-out`, body);
   return data;
 }
+
+export const getAllTransactions = async () => {
+  const { data } = await connectApi.get(`transactions/list`);
+  return data;
+}
+
+export const filterTransactions = async (op: string, date: string) => {
+  const { data } = await connectApi.get(`transactions/list/search?${op}&${date}`);
+  return data;
+}
