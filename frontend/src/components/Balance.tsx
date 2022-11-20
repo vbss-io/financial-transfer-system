@@ -14,7 +14,6 @@ export default function Balance() {
   useEffect(() => {
     const getBalance = async () => {
       const balance = await requests.getBalance();
-      console.log("b", balance);
       setBalance(balance.balance);
     };
     getBalance();
