@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as requests from '../utils/requests';
-
-interface Balance {
-  balance: number;
-}
+import UserInfo from '../components/UserInfo';
+import Balance from '../components/Balance';
+import NewTransaction from '../components/NewTransaction';
 
 interface User {
   id: number;
@@ -12,29 +12,47 @@ interface User {
 }
 
 export default function Home() {
-  const [balance, setBalance] = useState({} as Balance);
+  const navigate = useNavigate();
   const [user, setUser] = useState({} as User);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') as any);
-    setUser(user);
-    requests.setToken(user.token);
+    if (!user) {
+      navigate('/login');
+    } else {
+      setUser(user);
+      requests.setToken(user.token);
+    }
 
-    const getBalance = async () => {
-      const response = await requests.getBalance();
-      setBalance(response);
+    const verifyToken = async () => {
+      try {
+        await requests.verifyToken(user.token);
+      } catch (error: any) {
+        console.log(error);
+        navigate('/');
+      }
     };
-    getBalance();
+    verifyToken();
+
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <p>
-        {user.username}
-      </p>
-      <p>
-        {balance.balance}
-      </p>
+    <div className="
+      w-screen
+      h-screen
+      flex
+      flex-row
+      items-center
+      justify-center
+      bg-white-smoked"
+    >
+      <div className="flex flex-col py-8 px-10 w-[40rem] gap-4">
+        <UserInfo username={user.username} />
+        <div className="flex md:flex-row sm:flex-col flex-col gap-4">
+          <Balance />
+          <NewTransaction />
+        </div>
+      </div>
     </div>
   );
 }
