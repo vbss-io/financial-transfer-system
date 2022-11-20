@@ -11,10 +11,8 @@ export default class App {
     this.app = express();
 
     this.config();
-
-    this.app.get('/test', (_req, res) => res.json({ message: 'Hello World!' }));
   }
-
+  
   private config():void {
     const accessControl: express.RequestHandler = (_req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
@@ -22,14 +20,16 @@ export default class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
-
+    
+  this.app.get('/test', (_req, res) => res.json({ message: 'Hello World!' }));
   this.app.use(express.json());
   this.app.use(accessControl);
   this.app.use(cors());
   this.app.use('/users', routes.userRouter);
   this.app.use('/accounts', routes.accountRouter);
   this.app.use('/transactions', routes.transactionRouter);
-  this.app.use((_req, res) => res.status(404).json({ message: 'Not Found' }));
+  this.app.use('/token', routes.verifyTokenRoute);
+  this.app.use('/', (_req, res) => res.status(404).json({ message: 'Not Found' }));
 
   this.app.use(errorHandler);
   }
