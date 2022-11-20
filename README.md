@@ -80,7 +80,7 @@ npm run compose:up:dev
 
 Apagar o Container
 ```bash
-npm run compose:down
+npm run compose:down:dev
 ```
 
 O Front e o Back podem ser executados em suas respetivas pastas.
