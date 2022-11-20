@@ -50,10 +50,6 @@ export default function TransactionsList() {
     getAllTransactions();
   }, []);
 
-  useEffect(() => {
-    console.log(transactions);
-  }, [transactions]);
-
   return (
     <>
       <TransactionsFilter 

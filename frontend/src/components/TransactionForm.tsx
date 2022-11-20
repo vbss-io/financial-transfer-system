@@ -15,14 +15,11 @@ export default function TransactionForm() {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
-
     try {
       const transaction = await requests.newTransaction({ ...data, value: Number(data.value) });
       setErrorStatus(false);
       setSuccessStatus(true);
       setSuccess("Realizado com sucesso!");
-      console.log(transaction);
     } catch (error: any) {
       console.log(error);
       setSuccessStatus(false);
