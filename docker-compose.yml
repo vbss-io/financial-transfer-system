@@ -1,5 +1,18 @@
 version: '3.9'
 services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 5173:5173
+    working_dir: /app-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:5173"]
+      timeout: 10s
+      retries: 5
   backend:
     container_name: backend
     build: ./backend
