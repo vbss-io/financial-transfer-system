@@ -13,6 +13,11 @@ export const setToken = (token: string) => {
   connectApi.defaults.headers.common.Authorization = token;
 };
 
+export const verifyToken = async (token: string) => {
+  const { data } = await connectApi.get('/token');
+  return data;
+}
+
 export const postUser = async (endpoint: string, body: any) => {
   const { data } = await connectApi.post(`users/${endpoint}`, body);
   return data;
@@ -20,5 +25,10 @@ export const postUser = async (endpoint: string, body: any) => {
 
 export const getBalance = async () => {
   const { data } = await connectApi.get(`accounts/balance`);
+  return data;
+}
+
+export const newTransaction = async (body: any) => {
+  const { data } = await connectApi.post(`transactions/cash-out`, body);
   return data;
 }
