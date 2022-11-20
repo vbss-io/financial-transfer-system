@@ -3,6 +3,7 @@
 export enum ErrorTypes {
   TokenNotFound = 'TokenNotFound',
   JsonWebTokenError = 'JsonWebTokenError',
+  TokenExpiredError = 'TokenExpiredError',
   AccountNotFound = 'AccountNotFound',
   InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
@@ -21,31 +22,35 @@ export type ErrorCatalog = {
 
 export const errorCatalog: ErrorCatalog = {
   SequelizeUniqueConstraintError: {
-    message: 'Username already in use',
+    message: 'Usuário já existe',
     httpStatus: 409,
   },
   TokenNotFound: {
-    message: 'Token not found',
+    message: 'Token não encontrado',
     httpStatus: 401,
   },
   InvalidCredentials: {
-    message: 'Invalid credentials',
+    message: 'Credenciais inválidas',
     httpStatus: 401,
   },
   AccountNotFound: {
-    message: 'Account not found',
+    message: 'A conta não foi encontrada',
     httpStatus: 404,
   },
   InvalidUsername: {
-    message: 'Invalid username',
+    message: 'Nome de usuário inválido',
     httpStatus: 400,
   },
   NoBalance: {
-    message: 'Insufficient balance',
+    message: 'Saldo insuficiente',
     httpStatus: 400,
   },
   JsonWebTokenError: {
-    message: 'Invalid token',
+    message: 'Token inválido',
+    httpStatus: 401,
+  },
+  TokenExpiredError: {
+    message: 'Token expirado',
     httpStatus: 401,
   },
 };
