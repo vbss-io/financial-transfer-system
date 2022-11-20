@@ -1,4 +1,4 @@
-import LoginForm from "../components/Form/LoginForm"
+import LoginForm from "../components/LoginForm"
 
 export default function Login() {
   return(
@@ -9,7 +9,8 @@ export default function Login() {
       flex-row
       items-center
       justify-center
-      bg-white-smoked">
+      bg-white-smoked"
+    >
       <LoginForm />
     </div>
   )
