@@ -3,6 +3,7 @@
 export enum ErrorTypes {
   TokenNotFound = 'TokenNotFound',
   JsonWebTokenError = 'JsonWebTokenError',
+  TokenExpiredError = 'TokenExpiredError',
   AccountNotFound = 'AccountNotFound',
   InvalidCredentials = 'InvalidCredentials',
   SequelizeUniqueConstraintError = 'SequelizeUniqueConstraintError',
@@ -46,6 +47,10 @@ export const errorCatalog: ErrorCatalog = {
   },
   JsonWebTokenError: {
     message: 'Invalid token',
+    httpStatus: 401,
+  },
+  TokenExpiredError: {
+    message: 'Token expired',
     httpStatus: 401,
   },
 };
