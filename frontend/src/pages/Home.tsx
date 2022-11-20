@@ -4,6 +4,7 @@ import * as requests from '../utils/requests';
 import UserInfo from '../components/UserInfo';
 import Balance from '../components/Balance';
 import NewTransaction from '../components/NewTransaction';
+import Transactions from '../components/Transactions';
 
 interface User {
   id: number;
@@ -14,6 +15,7 @@ interface User {
 export default function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState({} as User);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') as any);
@@ -22,6 +24,7 @@ export default function Home() {
     } else {
       setUser(user);
       requests.setToken(user.token);
+      setLoading(false);
     }
 
     const verifyToken = async () => {
@@ -46,13 +49,20 @@ export default function Home() {
       justify-center
       bg-white-smoked"
     >
-      <div className="flex flex-col py-8 px-10 w-[40rem] gap-4">
-        <UserInfo username={user.username} />
-        <div className="flex md:flex-row sm:flex-col flex-col gap-4">
-          <Balance />
-          <NewTransaction />
+      {!loading ? (
+        <div className="flex flex-col py-8 px-10 w-[40rem] gap-4">
+          <UserInfo username={user.username} />
+          <div className="flex md:flex-row sm:flex-col flex-col gap-4">
+            <Balance />
+            <NewTransaction />
+          </div>
+          <Transactions />
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-col py-8 px-10 w-[40rem] gap-4">
+          <p>Loading...</p>
+        </div>
+      )}
     </div>
   );
 }
